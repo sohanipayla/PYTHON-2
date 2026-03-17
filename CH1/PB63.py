@@ -42,7 +42,7 @@ print(df.shape)
 
 # 10. Sum of NULL values
 print("\nNull values in each column:")
-print(df.isnull().sum())
+print(df.isna().sum())
 
 # 11. Remove first 3 columns
 df1 = df.iloc[:, 3:]
