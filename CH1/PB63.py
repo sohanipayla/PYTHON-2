@@ -14,7 +14,7 @@ print(df.describe())
 
 # 4. Correlation table and comment
 print("\nCorrelation Table:")
-corr = df.corr(numeric_only=True)
+corr = df.corr()
 print(corr)
 
 print("\nComment:")
