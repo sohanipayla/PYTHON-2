@@ -1,13 +1,7 @@
 import pandas as pd
-df = pd.DataFrame({
-    'age': [22, 35, 61, 45, 28]
-})
-def categorize_age(age):
-    if age < 30:
-        return 'Young'
-    elif age > 60:
-        return 'Elderly'
-    else:
-        return 'Middle-aged'
-df['age_group'] = df['age'].apply(categorize_age)
+import numpy as np
+
+df['Age_Group'] = np.where(df['age'] < 30, 'Young',
+                    np.where(df['age'] <= 60, 'Middle-aged', 'Elderly'))
+
 print(df)
