@@ -1,5 +1,4 @@
 import pandas as pd
-import matplotlib.pyplot as plt
 
 # 1. Convert CSV file into DataFrame
 df = pd.read_csv("heights_weights.csv")
@@ -25,7 +24,11 @@ print(corr)
 print("\nComment:")
 print("Height and Weight show positive correlation (as height increases, weight also increases).")
 
-# 5. Check outliers using boxplot
-df[['Height','Weight']].boxplot()
-plt.title("Boxplot for Height and Weight (Outlier Detection)")
-plt.show()
+# 5. Check outliers
+Q1 = df.quantile(0.25)
+Q3 = df.quantile(0.75)
+IQR = Q3 - Q1
+
+outliers = ((df < (Q1 - 1.5 * IQR)) | (df > (Q3 + 1.5 * IQR)))
+
+print(outliers.sum())
