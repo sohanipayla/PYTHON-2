@@ -1,16 +1,13 @@
 import pandas as pd
-import matplotlib.pyplot as plt
 
 # 1. Convert CSV into DataFrame
 df = pd.read_csv("spotify.csv")
 
 # 2. Display basic information
-print("DataFrame Info:")
-print(df.info())
+df.info()
 
 # 3. Display basic statistics
-print("\nStatistics:")
-print(df.describe())
+df.describe()
 
 # 4. Correlation table and comment
 print("\nCorrelation Table:")
