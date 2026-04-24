@@ -9,9 +9,11 @@ from sklearn.metrics import mean_squared_error, r2_score
 # a) Load the windpower dataset
 df = pd.read_csv('windpower.csv')
 df
+print()
 # b) Check for missing values and remove them permanently
 print(df.isnull().sum())
-df.dropna(inplace=True)
+df.dropna(inplace=True) 
+print()
 # c) Split the dataset into training (75%) and testing (25%)
 X = df[['Wind speed (m/s)']] 
 y = df['Power (kW)']
@@ -23,6 +25,7 @@ print("Training data size:", X_train.shape)
 print("Testing data size:", X_test.shape)
 print("Training data size:", y_train.shape)
 print("Testing data size:", y_test.shape)
+print()
 # d, e, h) Train models, Predict, and Print Metrics/Coefficients
 degrees = [3, 4, 5, 6]
 MSE = []
@@ -42,5 +45,11 @@ for i in degrees:
     print("Degree=",i)
     print("MSE=",mse)
     print("R2_score=",R2_score)
+    plt.scatter(X_test,y_test,label='Actual')
+    plt.scatter(X_test,y_pred,label='Prediction')
+plt.legend()
+plt.show()   
+print()
 plt.plot(degrees,MSE,'*-r')
 plt.show()
+print()
