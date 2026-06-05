@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upcoming Events</title>
+</head>
+<body>
+    <h1>Upcoming Events</h1>
+
+    <form method="GET" action="">
+        <input type="text" name="search" >
+        <button type="submit">Search</button>
+    </form>
+    <br>
+
+    <table border="1" cellpadding="10" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Event Name</th>
+                <th>Event Date</th>
+                <th>Location</th>
+                <th>Category</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for event in events %}
+                {% if not search_query or search_query in event.name %}
+                <tr>
+                    <td>{{ event.name }}</td>
+                    <td>{{ event.date }}</td>
+                    <td>{{ event.location }}</td>
+                    <td>{{ event.category }}</td>
+                </tr>
+                {% endif %}
+            {% endfor %}
+        </tbody>
+        
+    </table>
+
+    <br><hr>
+
+    <p><a href="{% url 'event_categories' %}">Event Categories</a></p>
+    <p><a href="{% url 'home' %}">Back to Home</a></p>
+</body>
+</html>

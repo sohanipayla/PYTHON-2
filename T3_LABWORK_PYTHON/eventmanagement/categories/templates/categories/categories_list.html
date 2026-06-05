@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Event Categories</title>
+</head>
+<body>
+    <h1>Event Categories</h1>
+    <hr>
+
+    <ul>
+        {% for category in categories %}
+            <li>{{ category.name }}</li>
+        {% empty %}
+            <li>No categories found.</li>
+        {% endfor %}
+    </ul>
+
+    <br><hr>
+
+    <p><a href="{% url 'upcoming_events' %}">Upcoming Events</a></p>
+    <p><a href="{% url 'home' %}">Back to Home</a></p>
+</body>
+</html>
