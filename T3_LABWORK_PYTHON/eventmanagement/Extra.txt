@@ -1,13 +1,29 @@
-1. Create a Django project named musicplayer: django-admin startproject musicplayer
-2. Create an app called findmusic: python manage.py startapp findmusic
-3. Model named Music (models.py):class Music(models.Model):
+Step 1: Terminal Commands for Setup
+django-admin startproject musicplayer
+
+To create the app inside project: python manage.py startapp findmusic
+
+Step 2: Database Model Structure (models.py)
+
+class Music(models.Model):
     song = models.CharField(max_length=200)
     artist = models.CharField(max_length=200)
     album = models.CharField(max_length=200)
     year = models.IntegerField()
-4. Migrate all sqlite tables: python manage.py makemigrations
-python manage.py migrate
-5. Create a superuser: python manage.py createsuperuser
-6. View code to extract data (views.py):  def music_list(request):
-    data = Music.objects.all()
-    return render(request, 'musicfind.html', {'music_data': data})
+
+ Step 3: Database Migration Commands
+ python manage.py makemigrations
+
+To apply changes to SQLite database: python manage.py migrate
+
+Step 4: Superuser Creation Command 
+python manage.py createsuperuser
+
+Step 5: View Logic for Data Extraction (views.py)
+
+def display_music(request):
+    all_songs = Music.objects.all()
+    context = {
+        'songs': all_songs
+    }
+    return render(request, 'musicfind.html', context)
