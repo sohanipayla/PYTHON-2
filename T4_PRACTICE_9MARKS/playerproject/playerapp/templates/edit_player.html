@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html><body>
+<form method="POST">
+{% csrf_token %}
+<input type="text" name="name" value="{{player.name}}">
+<input type="number" name="innings" value="{{player.test_innings}}">
+<input type="number" name="runs" value="{{player.runs}}">
+<input type="submit" value="Update">
+</form></body></html>
