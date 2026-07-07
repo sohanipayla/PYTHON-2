@@ -1,0 +1,207 @@
+<!--<!DOCTYPE html>
+<html><body>
+<a href="/">Home</a> |
+<a href="/welcome/">Welcome</a> |
+<a href="/add/">Add Player</a><hr>
+<form method="GET">
+<input type="text" name="search">
+<button>Search</button>
+</form>
+{% if players %}
+<table border="1">
+<tr><th>Name</th><th>Test Innings</th><th>Runs</th><th>Action</th></tr>
+{% for player in players %}
+<tr>
+<td>{{player.name}}</td>
+<td>{{player.test_innings}}</td>
+<td>{{player.runs}}</td>
+<td><a href="/edit/{{player.id}}">Edit</a> <a href="/delete/{{player.id}}">Delete</a></td>
+</tr>
+{% endfor %}
+</table>
+{% else %}
+<h3>No Record Found</h3>
+{% endif %}
+</body></html>-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Player Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        nav {
+            margin-bottom: 20px;
+        }
+        nav a {
+            text-decoration: none;
+            color: #0066cc;
+            font-weight: bold;
+        }
+        form {
+            margin-bottom: 30px;
+        }
+        input[type="text"] {
+            padding: 8px;
+            width: 250px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 8px 15px;
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #004499;
+        }
+        
+        /* Vertical List Container */
+        .card-container {
+            display: flex;
+            flex-direction: column; /* Stacks items vertically */
+            gap: 15px; /* Space between each vertical card */
+            margin-top: 20px;
+            max-width: 700px; /* Limits the list width for better readability */
+        }
+
+        /* Vertical Card Styling */
+        .player-card {
+            background: white;
+            border-radius: 8px;
+            padding: 15px 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+            border: 1px solid #e0e0e0;
+            display: flex;
+            flex-direction: row; /* Aligns data and actions side-by-side */
+            justify-content: space-between; /* Pushes content to left, buttons to right */
+            align-items: center; /* Centers everything vertically */
+        }
+
+        /* Text Layout Inside Card */
+        .player-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .player-name {
+            font-size: 1.2em;
+            margin: 0;
+            color: #222;
+        }
+
+        .player-stats {
+            display: flex;
+            gap: 20px; /* Puts stats side-by-side */
+            margin-top: 5px;
+            margin-bottom: 0;
+            font-size: 0.9em;
+            color: #555;
+        }
+
+        .player-stats p {
+            margin: 0;
+        }
+
+        /* Action Buttons Layout */
+        .card-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 0.85em;
+            white-space: nowrap; /* Prevents button text from wrapping */
+            text-align: center;
+        }
+
+        .btn-edit {
+            background-color: #4caf50;
+            color: white;
+        }
+
+        .btn-edit:hover {
+            background-color: #45a049;
+        }
+
+        .btn-delete {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .btn-delete:hover {
+            background-color: #da190b;
+        }
+
+        /* Responsive design for narrow mobile screens */
+        @media (max-width: 480px) {
+            .player-card {
+                flex-direction: column; /* Stack details and buttons on tiny screens */
+                align-items: flex-start;
+                gap: 15px;
+            }
+            .player-stats {
+                flex-direction: column;
+                gap: 5px;
+            }
+            .card-actions {
+                width: 100%;
+            }
+            .btn {
+                flex: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="/">Home</a> |
+    <a href="/welcome/">Welcome</a> |
+    <a href="/add/">Add Player</a>
+</nav>
+<hr>
+
+<form method="GET">
+    <input type="text" name="search" placeholder="Search players...">
+    <button type="submit">Search</button>
+</form>
+
+{% if players %}
+    <div class="card-container">
+        {% for player in players %}
+            <div class="player-card">
+                <div class="player-info">
+                    <h2 class="player-name">{{ player.name }}</h2>
+                    <div class="player-stats">
+                        <p><strong>Test Innings:</strong> {{ player.test_innings }}</p>
+                        <p><strong>Runs:</strong> {{ player.runs }}</p>
+                    </div>
+                </div>
+                <div class="card-actions">
+                    <a href="/edit/{{ player.id }}" class="btn btn-edit">Edit</a>
+                    <a href="/delete/{{ player.id }}" class="btn btn-delete">Delete</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <h3>No Record Found</h3>
+{% endif %}
+
+</body>
+</html>
