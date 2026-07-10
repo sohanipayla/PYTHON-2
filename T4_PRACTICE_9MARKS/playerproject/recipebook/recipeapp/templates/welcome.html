@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome - Recipe Book</title>
+    <!-- Tailwind CSS for modern colorful UI -->
+    <script src="https://jsdelivr.net"></script>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col justify-between">
+
+    <!-- Top Navigation Header -->
+    <header class="bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 shadow-md">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <span class="text-2xl font-black tracking-widest text-white">RECIPEBOOK</span>
+            <div class="flex space-x-4 font-bold">
+                <a href="{% url 'home' %}" class="text-white hover:bg-white/10 px-4 py-2 rounded-xl transition-all">Home</a>
+                <a href="{% url 'add_recipe' %}" class="text-white hover:bg-white/10 px-4 py-2 rounded-xl transition-all">Add Recipe</a>
+                <a href="{% url 'welcome' %}" class="text-white bg-white/20 px-4 py-2 rounded-xl transition-all">Welcome</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Dynamic Welcome Content -->
+    <main class="max-w-4xl mx-auto px-4 py-12 flex-grow flex items-center justify-center w-full">
+        <div class="bg-white p-12 rounded-3xl shadow-xl border-t-8 border-emerald-500 text-center max-w-xl w-full">
+            <!-- Requirement Specific String -->
+            <h1 class="text-5xl font-black tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-600 uppercase mb-6 drop-shadow-sm">
+                I LOVE COOKING
+            </h1>
+            <p class="text-slate-500 text-lg font-medium leading-relaxed mb-8">
+                Welcome to your premium professional kitchen system. Effortlessly manage recipes, classify food categories, and control precise execution times.
+            </p>
+            <a href="{% url 'home' %}" class="inline-block bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-extrabold px-8 py-3.5 rounded-xl shadow-lg transition-all transform hover:-translate-y-0.5">
+                Explore Dashboard &rarr;
+            </a>
+        </div>
+    </main>
+
+    <!-- Professional Footer -->
+    <footer class="bg-slate-900 border-t-4 border-emerald-500 py-5 text-center text-sm text-slate-400">
+        &copy; 2026 Recipe Book Professional Project. All rights reserved.
+    </footer>
+
+</body>
+</html>
