@@ -1,0 +1,67 @@
+Django project ko step-by-step banane ka ek perfect order (sequence) hota hai taaki koi error na aaye. Niche maine wahi workflow diya hai ki pehle kaunsi file banani hai, uske baad kaunsi file aayegi, aur kis file ka kya kaam hai.
+------------------------------
+## 🟢 Phase 1: Initial Setup & Configuration (Sabse Pehle)
+Sabse pehle aap terminal me commands run karke project structure setup karenge, uske baad files me kaam shuru hoga:
+## 1. recipebook/settings.py (Sabse Pehli File)
+
+* Isme kya karna hai: Jab aap startapp recipeapp chalayenge, toh Django ko batana padta hai ki humne ek naya app banaya hai.
+* Kya code aayega: INSTALLED_APPS ki list ke andar 'recipeapp' ko add karenge aur TEMPLATES setting ke andar HTML files ka rasta (DIRS) set karenge.
+
+------------------------------
+## 🔵 Phase 2: Database & Models (Doosra Step)
+Settings config karne ke baad seedhe Database ka structure tayaar kiya jata hai.
+## 2. recipeapp/models.py (Doosri File)
+
+* Isme kya karna hai: Aapki requirements ke mutabik Table ka structure design karna hai.
+* Kya code aayega: Recipe naam ki class banegi jisme teen fields honge: name (CharField), category (CharField), aur cooking_time (IntegerField).
+* Iske baad aap terminal me makemigrations aur migrate commands chalayenge taaki ye table database me ban jaye.
+
+## 3. Superuser Creation (Command Line Step)
+
+* Isme kya karna hai: Terminal me python manage.py createsuperuser run karenge.
+* Kya details aayegi: Prompt aane par Username = Roll Number aur Password = Enrollment Number daalkar admin user create karenge.
+
+## 4. recipeapp/admin.py (Teesri File)
+
+* Isme kya karna hai: Jo Recipe model humne banaya hai, usko admin panel par dekhne ke liye register karna hai.
+* Kya code aayega: admin.site.register(Recipe) ya admin decorator ka code aayega jo Django Admin interface me records show karega.
+
+------------------------------
+## 🟡 Phase 3: Routing & URLs (Teesra Step)
+Ab database tayaar hai, toh ab hume websites ke raste (URLs) tay karne hain ki kis address par kya dikhega.
+## 5. recipebook/urls.py (Chauthi File - Project Level)
+
+* Isme kya karna hai: Ye main routing file hai. Isko batana hai ki jab bhi koi normal user website khole, toh use recipeapp ki URLs par bhej de.
+* Kya code aayega: Isme path('', include('recipeapp.urls')) likha jayega.
+
+## 6. recipeapp/urls.py (Paanchvi File - App Level - Isko khud create karna padta hai)
+
+* Isme kya karna hai: Aapke project ke saare 5 main routes yahan define honge (Home, Add, Edit, Delete, Welcome).
+* Kya code aayega: path('', views.welcome_page...), path('home/', views.home_page...), path('add/', views.add_recipe...), wagera ka saara routing path setup hoga.
+
+------------------------------
+## 🔴 Phase 4: Backend Logic & HTML Views (Aakhri Step)
+Raste (URLs) tay hone ke baad, un rasto par kya action hoga (Logic) aur kaunsa page dikhega (HTML), wo kaam kiya jata hai.
+## 7. recipeapp/views.py (Chhatti File)
+
+* Isme kya karna hai: Saari dimaag aur logic isi file me hoti hai. Database se data nikalna, search filter apply karna, form ka data save karna aur record delete karna.
+* Kya code aayega: Isme 5 functions banyenge:
+1. welcome_page: Sirf welcome page render karega.
+   2. home_page: Agar search query hai toh filter karega, nahi toh saara data nikal kar home.html ko bhejega.
+   3. add_recipe: GET request par form dikhayega aur POST request par data database me save karke home par redirect karega.
+   4. edit_recipe: Kisi specific ID ka data nikal kar form me bharega aur edit karne dega.
+   5. delete_recipe: Specific ID ke record ko delete karke wapas home page par bhej dega.
+
+## 8. Templates Folder & HTML Files (Saathvi File)
+Views banane ke baad unke liye HTML files design ki jati hain:
+
+* base.html: Isme Navigation Bar (Home, Add, Welcome) ka common code hoga jo saare pages par dikhega.
+* welcome.html: Isme sirf "I LOVE COOKING" likha hoga.
+* home.html: Isme Search bar, recipe data dikhane ke liye Table, aur Table ke andar Edit/Delete ke buttons honge. Agar table khali hai toh "No Data Found" ka block hoga.
+* recipe_form.html: Isme ek generic HTML Form hoga jisme input fields (name, category, cooking_time) aur ek Save Recipe ka button hoga.
+
+------------------------------
+## 🎯 Summary Flow Order:
+settings.py ➡️ models.py ➡️ admin.py ➡️ Project urls.py ➡️ App urls.py ➡️ views.py ➡️ HTML Templates ➡️ Run Server
+Kya aapko ye poora order aur step-by-step logic samajh aa gayi? Agar aap chahein toh ab hum ek-ek karke pehli file se shuru kar sakte hain, mujhe bataiye!
+
