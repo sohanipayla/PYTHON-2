@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head><title>{{ action }} Patient</title></head>
+<body>
+    <nav>
+        <a href="{% url 'home' %}">Home</a> | 
+        <a href="{% url 'add_patient' %}">Add</a> | 
+        <a href="{% url 'welcome' %}">Welcome</a>
+    </nav>
+    <hr>
+    <h2>{{ action }} Patient Record</h2>
+    
+    <form method="POST">
+        {% csrf_token %}
+        <label>Name:</label><br>
+        <input type="text" name="name" value="{{ patient.name }}" required><br><br>
+        
+        <label>Age:</label><br>
+        <input type="number" name="age" value="{{ patient.age }}" required><br><br>
+        
+        <label>Disease:</label><br>
+        <input type="text" name="disease" value="{{ patient.disease }}" required><br><br>
+        
+        <label>Doctor:</label><br>
+        <input type="text" name="doctor" value="{{ patient.doctor }}" required><br><br>
+        
+        <button type="submit">Save Record</button>
+    </form>
+</body>
+</html>
+    

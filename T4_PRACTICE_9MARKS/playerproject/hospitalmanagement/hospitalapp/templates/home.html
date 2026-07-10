@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head><title>Home - Patient Records</title></head>
+<body>
+    <nav>
+        <a href="{% url 'home' %}">Home</a> | 
+        <a href="{% url 'add_patient' %}">Add</a> | 
+        <a href="{% url 'welcome' %}">Welcome</a>
+    </nav>
+    <hr>
+    <h2>Patient Records</h2>
+
+    <!-- Search Form -->
+    <form method="GET" action="">
+        <input type="text" name="q" value="{{ query }}" placeholder="Search by name...">
+        <button type="submit">Search</button>
+    </form>
+    <br>
+
+    {% if patients %}
+        <table border="1" cellpadding="5" cellspacing="0">
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Disease</th>
+                <th>Doctor</th>
+                <th>Actions</th>
+            </tr>
+            {% for patient in patients %}
+            <tr>
+                <td>{{ patient.name }}</td>
+                <td>{{ patient.age }}</td>
+                <td>{{ patient.disease }}</td>
+                <td>{{ patient.doctor }}</td>
+                <td>
+                    <a href="{% url 'edit_patient' patient.pk %}">Edit</a> | 
+                    <a href="{% url 'delete_patient' patient.pk %}" onclick="return confirm('Are you sure?')">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <h3>No Data Found</h3>
+    {% endif %}
+</body>
+</html>
